@@ -3,7 +3,7 @@
  * @Author: 滇西
  * @Date: 2022-11-01 22:43:13
  * @LastEditors: 滇西
- * @LastEditTime: 2022-11-09 22:49:07
+ * @LastEditTime: 2022-11-09 23:41:56
  */
 import {
   DesktopOutlined,
@@ -50,11 +50,15 @@ const items: MenuItem[] = [
 
 const View: React.FC = () => {
   const [collapsed, setCollapsed] = useState(false);
-
+  
   const navigateTo = useNavigate()
   // 侧边栏点击切换路由
   const menuClick = (e:{key:String})=>{
     navigateTo(e.key)
+  }
+  const [openKeys,setopenKeys] = useState([''])
+  const handleChange = (keys:string[])=>{
+    setopenKeys([keys[keys.length-1]])
   }
 
   return (
@@ -64,7 +68,9 @@ const View: React.FC = () => {
         <div className="logo">
           <img src={ahjet} alt="" />
         </div>
-        <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline" items={items} onClick={menuClick} />
+        <Menu theme="dark" defaultSelectedKeys={['/overView']} mode="inline" items={items} onClick={menuClick}
+        onOpenChange={handleChange}
+        openKeys={openKeys} />
       </Sider>
       {/* 右边内容 */}
       <Layout className="site-layout">
