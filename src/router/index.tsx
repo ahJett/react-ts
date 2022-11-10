@@ -3,7 +3,7 @@
  * @Author: 滇西
  * @Date: 2022-11-01 22:48:35
  * @LastEditors: 滇西
- * @LastEditTime: 2022-11-09 22:53:14
+ * @LastEditTime: 2022-11-10 21:12:25
  */
 
 /* 传统写法 */
@@ -27,6 +27,10 @@ import React, { lazy } from "react"
 
 const OverView = lazy(() => import('@/views/overView/Index'))
 const Content = lazy(() => import('@/views/content/Index'))
+const Role = lazy(()=>import('@/views/setting/role/Index'))
+const User = lazy(()=>import('@/views/setting/user/Index'))
+const Brand = lazy(()=>import('@/views/chart/brand/Index'))
+const Error = lazy(()=>import('@/views/404'))
 /* 路由表写法 */
 
 const withLoadingComponent = (component: JSX.Element) => (
@@ -52,8 +56,35 @@ const routes = [
       {
         path: '/content',
         element: withLoadingComponent(<Content />)
+      },
+      {
+        path: '/setting',
+        redirect:'/setting/role',
+        children:[
+          {
+            path: '/setting/role',
+            element: withLoadingComponent(<Role />)
+          },
+          {
+            path: '/setting/user',
+            element: withLoadingComponent(<User />)
+          },
+        ]
+      },
+      {
+        path: '/chart',
+        redirect:'/chart/brand',
+        children:[
+          {
+            path: '/chart/brand',
+            element: withLoadingComponent(<Brand />)
+          }
+        ]
       }
     ]
+  },{
+    path:'*',
+    element:withLoadingComponent(<Error></Error>)
   }
   // {
   //   path:'/home',
