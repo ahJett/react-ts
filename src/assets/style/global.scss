@@ -3,6 +3,9 @@ body{
   background-color: $color;
   -webkit-user-select:none;
   user-select: none;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
   // padding: 16px;
 }
 img{

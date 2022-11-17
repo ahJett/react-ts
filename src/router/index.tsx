@@ -3,7 +3,7 @@
  * @Author: 滇西
  * @Date: 2022-11-01 22:48:35
  * @LastEditors: 滇西
- * @LastEditTime: 2022-11-10 21:12:25
+ * @LastEditTime: 2022-11-12 10:56:43
  */
 
 /* 传统写法 */
@@ -31,6 +31,7 @@ const Role = lazy(()=>import('@/views/setting/role/Index'))
 const User = lazy(()=>import('@/views/setting/user/Index'))
 const Brand = lazy(()=>import('@/views/chart/brand/Index'))
 const Error = lazy(()=>import('@/views/404'))
+const Login  = lazy(()=>import('@/views/login/Index'))
 /* 路由表写法 */
 
 const withLoadingComponent = (component: JSX.Element) => (
@@ -82,7 +83,12 @@ const routes = [
         ]
       }
     ]
-  },{
+  },
+  {
+    path: '/login',
+    element: <Login />
+  },
+  {
     path:'*',
     element:withLoadingComponent(<Error></Error>)
   }

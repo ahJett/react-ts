@@ -3,7 +3,7 @@
  * @Author: 滇西
  * @Date: 2022-11-10 20:22:49
  * @LastEditors: 滇西
- * @LastEditTime: 2022-11-10 21:20:42
+ * @LastEditTime: 2022-11-10 22:04:29
  */
 import {
   DesktopOutlined,
@@ -91,7 +91,14 @@ const Comp: React.FC = () => {
   const menuClick = (e: { key: String }) => {
     navigateTo(e.key)
   }
-  const [openKeys, setopenKeys] = useState([''])
+
+  let firstOpenKeys:string = ''
+  firstOpenKeys  = items.find((el)=>{
+    return (currentRoute.pathname).includes(el.key)
+  }).key
+
+  // 设置展开项的初始值
+  const [openKeys, setopenKeys] = useState([firstOpenKeys])
   const handleChange = (keys: string[]) => {
     setopenKeys([keys[keys.length - 1]])
   }
